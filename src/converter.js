@@ -368,6 +368,10 @@ showdown.Converter = function (converterOptions) {
     // ex: <em>this is</em> <strong>sparta</strong>
     src = src.replace(/>[ \t]+</, '>¨NBSP;<');
 
+    // the BR elements have been added with line breaks, but parsing
+    // does not eliminate them.
+    src = src.replace(/<br( *\/)?>\n/g, '<br />');
+
     var doc = showdown.helper.document.createElement('div');
     doc.innerHTML = src;
 
